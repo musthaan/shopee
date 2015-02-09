@@ -1,0 +1,184 @@
+﻿@model IEnumerable<Shopee.Models.Product>
+@{
+    ViewBag.Title = "Index"; Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="my-datatable">
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EAN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpBrand.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpShape.ShapeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpMaterial.MaterialName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpDisplayType.DisplayTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpTargetedGroup.TargetedGroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lkpType.TypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EAN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpBrand.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpShape.ShapeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpMaterial.MaterialName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpDisplayType.DisplayTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpTargetedGroup.TargetedGroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lkpType.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+<script src="/Scripts/DataTables-1.10.4/jquery.dataTables.min.js" type="text/javascript"></script>
+<link href="/Content/DataTables-1.10.4/css/jquery.dataTables.min.css"
+    rel="stylesheet" type="text/css" />*@
+<section class="panel">
+    <header class="panel-heading">
+  Product List
+    <span class="tools pull-right">
+        <i class="glyphicon glyphicon-plus"></i>
+         @Html.ActionLink("New", "Create")
+    </span>                      
+</header>
+<div class="panel-body"> 
+    <div class="panel panel-default">
+      <div class="panel-heading resume-heading">
+       <div class="row"><div class="table-responsive">
+       <table class="table ">
+      <thead>
+                            <tr>
+                                 <th>
+         
+        </th>
+        <th>
+          
+        </th>         
+        <th>
+           
+        </th>
+        
+        
+        
+        <th></th>
+                            </tr>
+                        </thead>
+       <tbody>
+@foreach (var item in Model)
+{
+       <tr>
+                            <td>
+                            <div class="col-md-12 no-padding">
+                            <div class="col-md-6 no-padding">
+                            <img src="/image/90x90.png" alt="contact" class="img-rounded avatar hidden-phone" />
+                            </div>
+                            <div class="col-md-6">
+                            <a href="#" class="name sbold">  @Html.DisplayFor(modelItem => item.ProductName)</a>
+                                <p class="small"> @Html.DisplayFor(modelItem => item.EAN)</p>
+                            </div>
+                            </div>
+                                
+                                
+                            </td>
+                           <td>  
+                             <p><span class="text-primary sbold">Brand </span><small>@Html.DisplayFor(modelItem => item.lkpBrand.BrandName)</small> </p>
+                            <p>
+                              <span class="text-primary sbold">Shape </span><small> @Html.DisplayFor(model => item.lkpShape.ShapeName)</small> </p>
+                            </td>
+                            <td >
+                             <p> <span class="text-primary sbold">Material </span> <small>@Html.DisplayFor(model => item.lkpMaterial.MaterialName)</small></p>
+                             <p><span class="text-primary sbold">Group </span> @Html.DisplayFor(model => item.lkpTargetedGroup.TargetedGroupName)</p>
+                            </td>
+                            
+                            <td> 
+                            <div class="pull-right">
+                            <button type="button" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="delete"><i class="glyphicon glyphicon-trash"></i></button>
+                            <button type="button" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="edit"><i class="glyphicon glyphicon-edit"></i></button>
+    </div>
+</td>
+                        </tr>
+}
+       </tbody>
+       </table>
+       </div>   </div>
+      
+      </div>
+       <div class="col-xs-12 col-sm-12 col-md-12 " id="productPageNavigation">
+        </div>
+      
+
+      
+      
+      
+      
+    </div>
+    </div>
+    <div class="panel-footer">
+    <div class="row">                        
+       
+            
+       
+    </div>
+</div> 
+    </section>
+@section pagescripts{
+    $(function () {  
+        $("#productPageNavigation").empty().append(GetPaginationHTMLByCount("#",10,2));
+    });
+}

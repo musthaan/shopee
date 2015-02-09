@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Shopee.Models.lkpBanner>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="Content/gallery.css" />
+<section class="panel">
+                  <header class="panel-heading">
+                      Image Galley
+                      <span class="tools pull-right">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        @Html.ActionLink("New", "Create")
+                                     </span>
+                  </header>
+                  <div class="panel-body">
+                      <ul class="grid cs-style-3">
+                    @foreach (var item in Model)
+                    {  <li>
+                              <figure>
+                                  <img src="@item.imagePath" alt="">
+                                  <figcaption>
+                                  <div class="btn-group pull-right">
+                                  <a href="javascript:void();" class="btn btn-white" onclick="javascript:return ShowConfirm(@item.BannerID);">Delete</a>
+                                        
+                                  </div>
+                                 
+                                  
+                                      <a class="fancybox" rel="group" href="@item.imagePath">view</a>
+                                  </figcaption>
+                              </figure>
+                          </li>
+                          
+                    }
+                      </ul>
+                      </div>
+                      </section>
+@section pagescripts{
+function ShowConfirm(bannerID) { 
+alertify.confirm('Are you sure').set('onok', function(){
+CallDeleteBanner(bannerID);
+} ); }
+
+ function CallDeleteBanner(bannerID) { 
+     $.post( "Admin/Banner/Delete/" +bannerID, function( data ){ 
+     if(data.Code==200){
+       alertify.success('Successfully Deleted!');
+       setInterval(function() {
+  window.location.reload();
+}, 2000);
+       }
+    }).fail(function() {
+   alertify.error('error');
+  }); 
+ }
+}

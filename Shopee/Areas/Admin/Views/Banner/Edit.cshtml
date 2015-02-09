@@ -1,0 +1,53 @@
+﻿@model Shopee.Models.lkpBanner
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>lkpBanner</legend>
+
+        @Html.HiddenFor(model => model.BannerID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.imagePath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.imagePath)
+            @Html.ValidationMessageFor(model => model.imagePath)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SizeID, "lkpSize")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SizeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.SizeID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,42 @@
+﻿@model Shopee.Models.lkpMaterial
+
+@{
+    ViewBag.Title = "Edit"; Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="panel">
+                  @using (Html.BeginForm("Edit", "Material", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                  { 
+                      
+                       @Html.HiddenFor(model => model.MaterialID)
+                        @Html.HiddenFor(model => model.Active)
+<header class="panel-heading">
+Edit Material
+    <span class="tools pull-right">
+        <i class="glyphicon glyphicon-th"></i>
+        @Html.ActionLink("Back", "Index", "Material")
+    </span>                      
+</header>
+<div class="panel-body">                 
+    <div class="form-group">
+    @Html.LabelFor(model => model.MaterialName, "Material", new { @class = "col-sm-3 control-label" })   
+        <div class="col-sm-9">
+        @Html.TextBoxFor(model => model.MaterialName, new { @class = "form-control" }) 
+        </div>
+    </div>             
+</div>
+<div class="panel-footer">
+    <div class="row">                        
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+            <div class="pull-right">                             
+                <button type="submit" class="btn btn-labeled btn-success">
+                <i class="glyphicon glyphicon-ok"></i> Save
+                </button>                            
+                <a type="button" class="btn btn-labeled btn-danger  " href="/Admin/Material/Index">
+                <span class="btn-label"><i class="glyphicon glyphicon-remove"></i></span> Cancel
+                </a>
+            </div>
+        </div>
+    </div>
+</div> 
+                  }
+                  </section>

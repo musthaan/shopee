@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopeeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="ShopeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="lkpBanners" EntityType="ShopeeModel.lkpBanner" />
+    <EntitySet Name="lkpBrands" EntityType="ShopeeModel.lkpBrand" />
+    <EntitySet Name="lkpDisplayTypes" EntityType="ShopeeModel.lkpDisplayType" />
+    <EntitySet Name="lkpMaterials" EntityType="ShopeeModel.lkpMaterial" />
+    <EntitySet Name="lkpShapes" EntityType="ShopeeModel.lkpShape" />
+    <EntitySet Name="lkpSizes" EntityType="ShopeeModel.lkpSize" />
+    <EntitySet Name="lkpTargetedGroups" EntityType="ShopeeModel.lkpTargetedGroup" />
+    <EntitySet Name="lkpTypes" EntityType="ShopeeModel.lkpType" />
+    <EntitySet Name="Products" EntityType="ShopeeModel.Product" />
+    <EntitySet Name="ProductImages" EntityType="ShopeeModel.ProductImage" />
+    <EntitySet Name="ProductOffers" EntityType="ShopeeModel.ProductOffer" />
+    <EntitySet Name="sysdiagrams" EntityType="ShopeeModel.sysdiagram" />
+    <EntitySet Name="webpages_Membership" EntityType="ShopeeModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="ShopeeModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="ShopeeModel.webpages_Roles" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="ShopeeModel.webpages_UsersInRoles" />
+    <AssociationSet Name="FK_lkpBanner_lkpSize" Association="ShopeeModel.FK_lkpBanner_lkpSize">
+      <End Role="lkpSize" EntitySet="lkpSizes" />
+      <End Role="lkpBanner" EntitySet="lkpBanners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpBrand" Association="ShopeeModel.FK_Product_lkpBrand">
+      <End Role="lkpBrand" EntitySet="lkpBrands" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpDisplayType" Association="ShopeeModel.FK_Product_lkpDisplayType">
+      <End Role="lkpDisplayType" EntitySet="lkpDisplayTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpMaterial" Association="ShopeeModel.FK_Product_lkpMaterial">
+      <End Role="lkpMaterial" EntitySet="lkpMaterials" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpShape" Association="ShopeeModel.FK_Product_lkpShape">
+      <End Role="lkpShape" EntitySet="lkpShapes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpTargetedGroup" Association="ShopeeModel.FK_Product_lkpTargetedGroup">
+      <End Role="lkpTargetedGroup" EntitySet="lkpTargetedGroups" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_lkpType" Association="ShopeeModel.FK_Product_lkpType">
+      <End Role="lkpType" EntitySet="lkpTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImage_Product" Association="ShopeeModel.FK_ProductImage_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductImage" EntitySet="ProductImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOffer_Product" Association="ShopeeModel.FK_ProductOffer_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductOffer" EntitySet="ProductOffers" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="ShopeeModel.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="lkpBanner">
+    <Key>
+      <PropertyRef Name="BannerID" />
+    </Key>
+    <Property Name="BannerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imagePath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="SizeID" Type="Int32" />
+    <NavigationProperty Name="lkpSize" Relationship="ShopeeModel.FK_lkpBanner_lkpSize" FromRole="lkpBanner" ToRole="lkpSize" />
+  </EntityType>
+  <EntityType Name="lkpBrand">
+    <Key>
+      <PropertyRef Name="BrandID" />
+    </Key>
+    <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpBrand" FromRole="lkpBrand" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="lkpDisplayType">
+    <Key>
+      <PropertyRef Name="DisplayTypeID" />
+    </Key>
+    <Property Name="DisplayTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DisplayTypeName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpDisplayType" FromRole="lkpDisplayType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="lkpMaterial">
+    <Key>
+      <PropertyRef Name="MaterialID" />
+    </Key>
+    <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpMaterial" FromRole="lkpMaterial" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="lkpShape">
+    <Key>
+      <PropertyRef Name="ShapeID" />
+    </Key>
+    <Property Name="ShapeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShapeName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpShape" FromRole="lkpShape" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="lkpSize">
+    <Key>
+      <PropertyRef Name="SizeID" />
+    </Key>
+    <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="Height" Type="Int32" />
+    <NavigationProperty Name="lkpBanners" Relationship="ShopeeModel.FK_lkpBanner_lkpSize" FromRole="lkpSize" ToRole="lkpBanner" />
+  </EntityType>
+  <EntityType Name="lkpTargetedGroup">
+    <Key>
+      <PropertyRef Name="TargetedGroupID" />
+    </Key>
+    <Property Name="TargetedGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TargetedGroupName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpTargetedGroup" FromRole="lkpTargetedGroup" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="lkpType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Products" Relationship="ShopeeModel.FK_Product_lkpType" FromRole="lkpType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="EAN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="BrandID" Type="Int32" Nullable="false" />
+    <Property Name="ShapeID" Type="Int32" Nullable="false" />
+    <Property Name="MaterialID" Type="Int32" Nullable="false" />
+    <Property Name="DisplayTypeID" Type="Int32" Nullable="false" />
+    <Property Name="TargetedGroupID" Type="Int32" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="lkpBrand" Relationship="ShopeeModel.FK_Product_lkpBrand" FromRole="Product" ToRole="lkpBrand" />
+    <NavigationProperty Name="lkpDisplayType" Relationship="ShopeeModel.FK_Product_lkpDisplayType" FromRole="Product" ToRole="lkpDisplayType" />
+    <NavigationProperty Name="lkpMaterial" Relationship="ShopeeModel.FK_Product_lkpMaterial" FromRole="Product" ToRole="lkpMaterial" />
+    <NavigationProperty Name="lkpShape" Relationship="ShopeeModel.FK_Product_lkpShape" FromRole="Product" ToRole="lkpShape" />
+    <NavigationProperty Name="lkpTargetedGroup" Relationship="ShopeeModel.FK_Product_lkpTargetedGroup" FromRole="Product" ToRole="lkpTargetedGroup" />
+    <NavigationProperty Name="lkpType" Relationship="ShopeeModel.FK_Product_lkpType" FromRole="Product" ToRole="lkpType" />
+    <NavigationProperty Name="ProductImages" Relationship="ShopeeModel.FK_ProductImage_Product" FromRole="Product" ToRole="ProductImage" />
+    <NavigationProperty Name="ProductOffers" Relationship="ShopeeModel.FK_ProductOffer_Product" FromRole="Product" ToRole="ProductOffer" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="ProductImageID" />
+    </Key>
+    <Property Name="ProductImageID" Type="Int64" Nullable="false" />
+    <Property Name="ProductID" Type="Int64" Nullable="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SortOrder" Type="Int32" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="ShopeeModel.FK_ProductImage_Product" FromRole="ProductImage" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductOffer">
+    <Key>
+      <PropertyRef Name="ProductOfferID" />
+    </Key>
+    <Property Name="ProductOfferID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int64" />
+    <Property Name="imagePath" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="Product" Relationship="ShopeeModel.FK_ProductOffer_Product" FromRole="ProductOffer" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="webpages_UsersInRoles" Relationship="ShopeeModel.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="ShopeeModel.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
+  </EntityType>
+  <Association Name="FK_lkpBanner_lkpSize">
+    <End Role="lkpSize" Type="ShopeeModel.lkpSize" Multiplicity="0..1" />
+    <End Role="lkpBanner" Type="ShopeeModel.lkpBanner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpSize">
+        <PropertyRef Name="SizeID" />
+      </Principal>
+      <Dependent Role="lkpBanner">
+        <PropertyRef Name="SizeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpBrand">
+    <End Role="lkpBrand" Type="ShopeeModel.lkpBrand" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpBrand">
+        <PropertyRef Name="BrandID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpDisplayType">
+    <End Role="lkpDisplayType" Type="ShopeeModel.lkpDisplayType" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpDisplayType">
+        <PropertyRef Name="DisplayTypeID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="DisplayTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpMaterial">
+    <End Role="lkpMaterial" Type="ShopeeModel.lkpMaterial" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpMaterial">
+        <PropertyRef Name="MaterialID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="MaterialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpShape">
+    <End Role="lkpShape" Type="ShopeeModel.lkpShape" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpShape">
+        <PropertyRef Name="ShapeID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ShapeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpTargetedGroup">
+    <End Role="lkpTargetedGroup" Type="ShopeeModel.lkpTargetedGroup" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpTargetedGroup">
+        <PropertyRef Name="TargetedGroupID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="TargetedGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_lkpType">
+    <End Role="lkpType" Type="ShopeeModel.lkpType" Multiplicity="1" />
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lkpType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImage_Product">
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="1" />
+    <End Role="ProductImage" Type="ShopeeModel.ProductImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductImage">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOffer_Product">
+    <End Role="Product" Type="ShopeeModel.Product" Multiplicity="0..1" />
+    <End Role="ProductOffer" Type="ShopeeModel.ProductOffer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ProductOffer">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="ShopeeModel.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="ShopeeModel.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

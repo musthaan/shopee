@@ -1,0 +1,85 @@
+﻿@model Shopee.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Product</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EAN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EAN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpBrand.BrandName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpBrand.BrandName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpShape.ShapeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpShape.ShapeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpMaterial.MaterialName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpMaterial.MaterialName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpDisplayType.DisplayTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpDisplayType.DisplayTypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpTargetedGroup.TargetedGroupName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpTargetedGroup.TargetedGroupName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpType.TypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpType.TypeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ProductID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

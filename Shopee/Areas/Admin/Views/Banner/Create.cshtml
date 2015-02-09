@@ -1,0 +1,98 @@
+﻿@model Shopee.Models.lkpBanner
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*
+<h2>Create</h2>
+
+<div class="container"><h2>lkpBanner</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+ 
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.imagePath)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.imagePath)
+            @Html.ValidationMessageFor(model => model.imagePath)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SizeID, "lkpSize")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SizeID", String.Empty)
+            @Html.ValidationMessageFor(model => model.SizeID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+*@ 
+<script src="../../../../Scripts/xdropzone.js" type="text/javascript"></script>
+<link href="../../../../Content/dropzone.css" rel="stylesheet" type="text/css" />
+
+
+<link href="/Content/dropzone.css"
+    rel="stylesheet" type="text/css" />
+<section class="panel">
+                  <header class="panel-heading">
+                      Add New Banner <span class="tools pull-right">
+                                        <i class="glyphicon glyphicon-th"></i>
+                                        @Html.ActionLink("Back", "Index", "Banner")
+                                     </span>
+                      
+                  </header>
+                  <div class="panel-body">
+                  @using (Html.BeginForm("uploadBanner", "Banner", null, FormMethod.Post, new { @class = "dropzone", id = "myAwesomeDropzone" }))
+                  {
+                  } 
+                   
+                  </div>
+                  </section>
+                  <style>
+                  #dropZone {
+        background: gray;
+        border: black dashed 3px;
+        width: 200px;
+        padding: 50px;
+        text-align: center;
+        color: white;
+    }</style>
+@section pagescripts{ 
+Dropzone.options.myAwesomeDropzone = {
+  paramName: "file", // The name that will be used to transfer the file
+  maxFilesize: 2, // MB
+    accept: function(file, done) {
+        var input ="image/";  
+        if(file.type.substring(0, input.length) !== input)
+        {
+            return;
+        }
+        done();
+    } 
+     
+};
+ 
+}

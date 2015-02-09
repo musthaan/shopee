@@ -1,0 +1,36 @@
+﻿@model Shopee.Models.lkpBanner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>lkpBanner</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.imagePath)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.imagePath)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lkpSize.SizeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lkpSize.SizeID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BannerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
